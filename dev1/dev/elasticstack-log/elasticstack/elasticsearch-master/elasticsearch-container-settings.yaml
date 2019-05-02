@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: elasticsearch
+spec:
+  template:
+    spec:
+      containers:
+        - name: elasticsearch
+          env:
+            - name: DISCOVERY_SERVICE
+              value: "$(elasticsearch-master-service-name).monitoring.svc.cluster.local"
+            - name: ES_JAVA_OPTS
+              value: "-Xms2048m -Xmx2048m"
+            - name: NODE_DATA
+              value: "false"
+            - name: NODE_INGEST
+              value: "false"
+            - name: NODE_MASTER
+              value: "true"
+            - name: POST_TERM_WAIT
+              value: "15"
+          imagePullPolicy: Always
+          lifecycle:
+            postStart:
+              exec:
+                command: [ "/usr/bin/bash", "-c", "sleep 60" ]
+          ports:
+            - containerPort: 9300
+              name: transport
+          resources:
+            limits:
+              memory: 4096Mi
+            requests:
+              memory: 4096Mi

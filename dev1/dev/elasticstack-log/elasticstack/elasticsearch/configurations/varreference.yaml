@@ -1,0 +1,5 @@
+varReference:
+- path: spec/serviceName
+  kind: StatefulSet
+- path: spec/template/spec/affinity/podAntiAffinity/preferredDuringSchedulingIgnoredDuringExecution/podAffinityTerm/labelSelector/matchExpressions/values
+  kind: StatefulSet
