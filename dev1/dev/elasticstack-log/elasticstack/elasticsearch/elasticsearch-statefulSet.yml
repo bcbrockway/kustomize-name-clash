@@ -3,20 +3,12 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: elasticsearch
-  labels:
-    tier: logging-plane
 spec:
   serviceName: elasticsearch
   replicas: 3
   updateStrategy:
     type: RollingUpdate
-  selector:
-    matchLabels:
-      tier: logging-plane
   template:
-    metadata:
-      labels:
-        tier: logging-plane
     spec:
       securityContext:
         runAsUser: 1000
@@ -24,12 +16,10 @@ spec:
       priorityClassName: infra
       containers:
       - name: elasticsearch
-        image: mintel/elasticsearch:v6.6.0-1
+        image: elasticsearch:6.6.0
         env:
           - name: CLUSTER_NAME
             value: logs
-          - name: DISCOVERY_SERVICE
-            value: "$(elasticsearch-service-name).monitoring.svc.cluster.local"
           - name: HTTP_ENABLE
             value: "true"
           - name: MINIMUM_NUMBER_OF_MASTERS

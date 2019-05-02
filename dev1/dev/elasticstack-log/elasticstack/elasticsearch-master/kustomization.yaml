@@ -11,8 +11,8 @@ commonLabels:
 bases:
   - ../elasticsearch
 
-#resources:
-#  - resources/elasticsearch-master-service.yml
+resources:
+  - elasticsearch-master-service.yml
 
 vars:
   - name: elasticsearch-master-service-name
@@ -45,5 +45,4 @@ vars:
       fieldpath: metadata.labels.instance
 
 patches:
-  - elasticsearch-container-settings.yaml
-  - template-spec-settings.yaml
+  - add-master-node-settings.yaml

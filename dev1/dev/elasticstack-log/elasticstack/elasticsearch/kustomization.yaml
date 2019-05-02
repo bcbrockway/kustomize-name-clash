@@ -7,11 +7,8 @@ commonLabels:
   app: elasticsearch
 
 resources:
-  - resources/elasticsearch-statefulSet.yml
+  - elasticsearch-statefulSet.yml
 
 images:
   - name: elasticsearch
-    newTag: v6.6.0-1
-
-configurations:
-  - configurations/varreference.yaml
+    newTag: 6.6.0

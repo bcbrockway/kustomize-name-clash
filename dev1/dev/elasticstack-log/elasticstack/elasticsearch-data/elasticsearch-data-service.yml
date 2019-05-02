@@ -4,5 +4,5 @@ metadata:
   name: elasticsearch
 spec:
   ports:
-  - name: http
-    port: 9200
+    - name: http
+      port: 9200

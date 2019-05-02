@@ -12,7 +12,7 @@ bases:
   - ../elasticsearch
 
 resources:
-  - resources/elasticsearch-data-service.yml
+  - elasticsearch-data-service.yml
 
 vars:
   - name: elasticsearch-data-service-name
@@ -45,5 +45,4 @@ vars:
       fieldpath: metadata.labels.instance
 
 patches:
-  - elasticsearch-container-settings.yaml
-  - template-spec-settings.yaml
+  - add-data-node-settings.yaml

@@ -6,58 +6,25 @@ commonAnnotations:
   mintel.com/env: dev
 
 bases:
-- ../../../app-config/apps/sre/cert-manager
-- ../../../app-config/apps/sre/auth
-- ../../../app-config/apps/sre/monitoring
-- ../../../app-config/apps/sre/haproxy-ingress
-- ../../../app-config/apps/sandbox/echoheaders
-- ../../../secrets/environments/dev
+  - elasticstack-log
 
 vars:
-- fieldref:
-    fieldPath: data.GOOGLE_PROJECT_ID
-  name: GOOGLE_PROJECT_ID
-  objref:
-    apiVersion: v1
-    kind: ConfigMap
-    name: cluster-properties
 - fieldref:
     fieldPath: data.DOMAIN
   name: DOMAIN
   objref:
     apiVersion: v1
     kind: ConfigMap
-    name: cluster-properties
+    name: environment-properties
 - fieldref:
-    fieldPath: data.CLUSTER_NAME
-  name: CLUSTER_NAME
+    fieldPath: data.CLUSTER_ENV
+  name: CLUSTER_ENV
   objref:
     apiVersion: v1
     kind: ConfigMap
-    name: cluster-properties
-- fieldref:
-    fieldPath: data.DNS_LETSENCRYPT_KEYNAME
-  name: DNS_LETSENCRYPT_KEYNAME
-  objref:
-    apiVersion: v1
-    kind: ConfigMap
-    name: cluster-properties
-- fieldref:
-    fieldPath: data.DNS_LETSENCRYPT_PROVIDER
-  name: DNS_LETSENCRYPT_PROVIDER
-  objref:
-    apiVersion: v1
-    kind: ConfigMap
-    name: cluster-properties
-- fieldref:
-    fieldPath: data.DNS_LETSENCRYPT_SERVER
-  name: DNS_LETSENCRYPT_SERVER
-  objref:
-    apiVersion: v1
-    kind: ConfigMap
-    name: cluster-properties
+    name: environment-properties
 
 configMapGenerator:
-- env: properties/cluster.properties
-  name: cluster-properties
+- env: properties/environment.properties
+  name: environment-properties
   namespace: kustomize
