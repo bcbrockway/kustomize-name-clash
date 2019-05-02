@@ -2,7 +2,8 @@
 kind: Kustomization
 apiVersion: kustomize.config.k8s.io/v1beta1
 
-nameSuffix: -data
+#nameSuffix: -data
+namePrefix: data-
 
 commonLabels:
   app.kubernetes.io/component: data-node

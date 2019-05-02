@@ -37,4 +37,12 @@ Error: Multiple matches for name ~G_v1_Service|monitoring|~P|elasticsearch|-mast
   [~G_v1_Service|monitoring|~P|elasticsearch|-master:-log ~G_v1_Service|monitoring|~P|elasticsearch|-data:-log]
 ```
 
-What are we doing wrong here? Are there any best practices for this kind of structure?
+I get a completely different error if I use `namePrefix` instead of `nameSuffix` in the `elasticsearch-master/kustomization.yaml` and `elasticsearch-data/kustomization.yaml` files:
+
+```
+Error: found 2 resId matches for var {elasticsearch-data-service-name ~G_v1_Service {metadata.name}} (unable to disambiguate)
+```
+
+This, I presume, is because the variable values are pulled _before_ the prefix/suffix is applied.
+
+What are we doing wrong here? Are we missing something? Are there any best practices for this kind of structure?
